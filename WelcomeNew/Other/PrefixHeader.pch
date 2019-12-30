@@ -1,0 +1,54 @@
+//
+//  PrefixHeader.pch
+//  ElectromechanicalHome
+//
+//  Created by bxkj on 2017/6/23.
+//  Copyright © 2017年 bxkj. All rights reserved.
+//
+
+/*
+ 
+ 
+ */
+//判断是否是OC语言环境
+#if __OBJC__
+//1.定义常用的宏
+#define warning [UIAlertController showTarget:self Alert:@"此功能暂未开放" duration:0.8];
+#define WeakSelf(type)  __weak typeof(type) weak##type = type;
+#define kScreenSize [UIScreen mainScreen].bounds
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+#define kFit6PWidth ([UIScreen mainScreen].bounds.size.width / 414)
+#define kFit6PHeight ([UIScreen mainScreen].bounds.size.height / 736)
+#define iPhone5s ([[UIScreen mainScreen] bounds].size.height == 568)
+#define iPhone6 ([[UIScreen mainScreen] bounds].size.height == 667)
+#define iPhone6Plus ([[UIScreen mainScreen] bounds].size.height == 736)
+#define IS_IphoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? (CGSizeEqualToSize(CGSizeMake(375, 812), [UIScreen mainScreen].bounds.size)) : NO)
+#define navigation_height (IS_IphoneX ? 88 : 64)
+#define TABBAR_HEIGHT (IS_IphoneX ? 44 : 20)
+//
+#define source_appLication [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]
+//iOS版本判断
+#define IS_IOS(x) ([[UIDevice currentDevice].systemVersion intValue] >= x)
+//设置字号
+#define WNFontWithPFRegularForSize(float) [UIFont fontWithName:@"PingFangSC-Regular"size:float]
+#define WNFontWithPFMediumForSize(float) [UIFont fontWithName:@"PingFangSC-Medium"size:float]
+#define WNFontWithPFSemiboldForSize(float) [UIFont fontWithName:@"PingFangSC-Semibold"size:float]
+//2. 导入常用的头文件
+#import <Masonry.h>
+#import <YYModel.h>
+#import "UIColor+Addition.h"
+#import "UIAlertController+Addition.h"
+#import "UIView+Size.h"
+#import "UIColor+Wonderful.h"
+#import "WNUserDataManger.h"
+//3.定义调试的宏
+#ifdef DEBUG //调试模式
+#define DXLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __FUNCTION__, __LINE__, ##__VA_ARGS__)
+#else
+#define DXLog(...)
+#endif
+
+#endif
+
+
